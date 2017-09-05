@@ -36,7 +36,7 @@ namespace NewReleases
 
         public static List<string> GetPremierPublishers()
         {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Previews"].ConnectionString))
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
             {
                 return connection.Query<string>("Select PremierPublisher From PremierPublishers").ToList();
             }
@@ -44,7 +44,7 @@ namespace NewReleases
         
         public static void WriteRelease(DateTime releaseDate, ReleaseItem releaseItem)
         {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Previews"].ConnectionString))
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
             {
                 decimal price = 0;
                 string note = null;
