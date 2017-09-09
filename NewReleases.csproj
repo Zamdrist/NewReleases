@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataObjects\InsertReleaseItems_DropCreate.sql" />
