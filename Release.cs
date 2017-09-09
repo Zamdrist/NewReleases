@@ -46,12 +46,11 @@ namespace NewReleases
         {
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
             {
-                decimal price = 0;
                 string note = null;
                 
-                if (!decimal.TryParse(releaseItem.Price.Replace("$", string.Empty), out price))
+                if (!decimal.TryParse(releaseItem.Price.Replace("$", string.Empty), out var price))
                 {
-                    note = releaseItem.Price;
+                    note = releaseItem.Price.Replace("$", String.Empty);
                 }
                 else
                 {

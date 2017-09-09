@@ -19,7 +19,7 @@ namespace NewReleases
             {
                 if (line.Contains(NewReleasesFor))
                 {
-                    releaseDate = DateTime.Parse(line.Substring(line.Length - 10));
+                    releaseDate = DateTime.Parse(line.Replace(NewReleasesFor,string.Empty).Trim());
                 }
                 else
                 {
