@@ -8,7 +8,7 @@ namespace NewReleases
     {
         public static void Main(string[] args)
         {
-            const string PremierPublishers = "PREMIER PUBLISHERS";
+            const string premierPublisherCategory = "PREMIER PUBLISHERS";
             const string NewReleasesFor = "New Releases For";
 
             var releaseItem = new ReleaseItem();
@@ -41,7 +41,7 @@ namespace NewReleases
                             releaseItem.Title = lineItems[1].Trim();
                             releaseItem.Price = lineItems[2].Trim();
 
-                            if (releaseItem.Category != PremierPublishers && !premierPublishers.Any(p => p == line))
+                            if (releaseItem.Category != premierPublisherCategory && !premierPublishers.Any(p => p == line))
                             {
                                 releaseItem.Publisher = null;
                             }
