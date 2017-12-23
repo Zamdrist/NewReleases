@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataObjects\InsertReleaseItems_DropCreate.sql" />
-    <Content Include="DataObjects\NewReleases_DropCreate.sql" />
     <Content Include="DataObjects\PremierPublishers_DropCreate.sql" />
     <Content Include="DataObjects\ReleaseItems_DropCreate.sql" />
   </ItemGroup>

@@ -45,8 +45,9 @@ namespace NewReleases
                             {
                                 releaseItem.Publisher = null;
                             }
-
-                            Release.WriteRelease(releaseDate, releaseItem);
+							//TODO: https://stackoverflow.com/questions/3913371/sqlbulkcopy-from-a-list
+							//TODO: https://www.nuget.org/packages/FastMember/
+							Release.WriteRelease(releaseDate, releaseItem);
                         }
                     }
                 }
