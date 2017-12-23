@@ -21,16 +21,16 @@ namespace NewReleases
                 var stream = webClient.OpenRead(RemoteReleaseFile);
                 var lines = new List<string>();
 
-                using (var streamReader = new StreamReader(stream))
-                {
-                    while (!streamReader.EndOfStream)
-                    {
-                        lines.Add(streamReader.ReadLine());
-                        
-                    }
-                }
+	            if (stream != null)
+		            using (var streamReader = new StreamReader(stream))
+		            {
+			            while (!streamReader.EndOfStream)
+			            {
+				            lines.Add(streamReader.ReadLine());
+			            }
+		            }
 
-                return lines.Where(f => !string.IsNullOrWhiteSpace(f));
+	            return lines.Where(f => !string.IsNullOrWhiteSpace(f));
             }
         }
 
