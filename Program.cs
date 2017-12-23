@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace NewReleases
@@ -9,21 +8,21 @@ namespace NewReleases
         public static void Main(string[] args)
         {
             const string premierPublisherCategory = "PREMIER PUBLISHERS";
-            const string NewReleasesFor = "New Releases For";
+            const string newReleasesFor = "New Releases For";
 
             var releaseItem = new ReleaseItem();
             var premierPublishers = Release.GetPremierPublishers();
-            var releaseDate = new DateTime();   
+            var releaseDate = new DateTime();
 
             foreach (var line in Release.GetRelease())
             {
-                if (line.Contains(NewReleasesFor))
+                if (line.Contains(newReleasesFor))
                 {
-                    releaseDate = DateTime.Parse(line.Replace(NewReleasesFor,string.Empty).Trim());
+                    releaseDate = DateTime.Parse(line.Replace(newReleasesFor,string.Empty).Trim());
                 }
                 else
                 {
-                    if (!line.Any(p => p.ToString().Contains("\t")) && !premierPublishers.Any(p => p == line))
+                    if (!line.Any(p => p.ToString().Contains("\t")) && premierPublishers.Any(p => p != line))
                     {
                         releaseItem.Category = line.Trim();
                     }
@@ -52,6 +51,6 @@ namespace NewReleases
                     }
                 }
             }
-        }           
+        }
     }
 }
