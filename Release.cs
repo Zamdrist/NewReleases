@@ -7,6 +7,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using Dapper;
+using FastMember;
 
 namespace NewReleases
 {
@@ -34,6 +35,14 @@ namespace NewReleases
             }
         }
 
+	    public static List<string> GetCategories()
+	    {
+		    using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
+		    {
+			    return connection.Query<string>("Select Category From Categories").ToList();
+		    }
+	    }
+
         public static List<string> GetPremierPublishers()
         {
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
@@ -41,36 +50,19 @@ namespace NewReleases
                 return connection.Query<string>("Select PremierPublisher From PremierPublishers").ToList();
             }
         }
-        
-        public static void WriteRelease(DateTime releaseDate, ReleaseItem releaseItem)
-        {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
-            {
-                string note = null;
-                
-                if (!decimal.TryParse(releaseItem.Price.Replace("$", string.Empty), out var price))
-                {
-                    note = releaseItem.Price.Replace("$", String.Empty);
-                }
-                else
-                {
-                    price = Convert.ToDecimal(releaseItem.Price.Replace("$", string.Empty));
-                }
-                
-                connection.Execute(
-                    "InsertReleaseItem",
-                    new
-                    {
-                        releaseDate,
-                        releaseItem.Category,
-                        releaseItem.Publisher,
-                        releaseItem.ItemCode,
-                        releaseItem.Title,
-                        price,
-                        note                                                
-                    },
-                    commandType: CommandType.StoredProcedure);
-            }
-        }
+
+	    public static void BulkCopyReleaseData(List<ReleaseItem> releaseData)
+	    {
+		    using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
+		    {
+				connection.Open();
+				using (var bcp = new SqlBulkCopy(connection))
+				{
+					bcp.DestinationTableName = "ReleaseItems";
+					bcp.WriteToServer(ObjectReader.Create(releaseData ,"ReleaseDate", "Category", "Publisher", "ItemCode", "Title", "Price", "Note"));
+				}
+			}
+
+	    }
     }
 }
