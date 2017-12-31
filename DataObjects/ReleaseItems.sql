@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[ReleaseItems](
 	[Title] [nvarchar](800) NULL,
 	[Price] [decimal](18, 2) NULL,
 	[Note] [nvarchar](max) NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
+)
+
 
 
