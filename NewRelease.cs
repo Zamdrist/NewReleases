@@ -4,7 +4,7 @@ using System.Linq;
 using NewReleases.Data;
 using NewReleases.Release;
 
-namespace NewReleases.ReleaseApp
+namespace NewReleases
 {
 	public class NewRelease
 	{
