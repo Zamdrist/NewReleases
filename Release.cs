@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.IO;
-using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using Dapper;
@@ -19,7 +17,7 @@ namespace NewReleases
         {
             using (var webClient = new WebClient())
             {
-                var stream = webClient.OpenRead(RemoteReleaseFile);
+                var stream = webClient.OpenRead(Release.RemoteReleaseFile);
                 var lines = new List<string>();
 
 	            if (stream != null)
@@ -35,19 +33,19 @@ namespace NewReleases
             }
         }
 
-	    public static List<string> GetCategories()
+	    public static IEnumerable<string> GetCategories()
 	    {
 		    using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
 		    {
-			    return connection.Query<string>("Select Category From Categories").ToList();
+			    return connection.Query<string>("Select Category From Categories");
 		    }
 	    }
 
-        public static List<string> GetPremierPublishers()
+        public static IEnumerable<string> GetPremierPublishers()
         {
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString))
             {
-                return connection.Query<string>("Select PremierPublisher From PremierPublishers").ToList();
+                return connection.Query<string>("Select PremierPublisher From PremierPublishers");
             }
         }
 
