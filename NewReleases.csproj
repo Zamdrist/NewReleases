@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\ReleaseData.cs" />
     <Compile Include="Data\ReleaseItem.cs" />
-    <Compile Include="ReleaseApp\NewRelease.cs" />
+    <Compile Include="NewRelease.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

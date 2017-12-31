@@ -24,7 +24,8 @@ namespace NewReleases.Data
 
 		private SqlConnection GetDatabaseConnection()
 		{
-			return new SqlConnection(ConfigurationManager.ConnectionStrings["NewReleases"].ConnectionString);
+			return new SqlConnection(ConfigurationManager.
+				ConnectionStrings["NewReleases"].ConnectionString);
 		}
 
 		public IEnumerable<string> GetRelease(Uri releaseUrl)
@@ -53,7 +54,8 @@ namespace NewReleases.Data
 		{
 			using (var connection = this.GetDatabaseConnection())
 			{
-				return connection.Query<string>("Select Category From Categories");
+				return connection.
+					Query<string>("Select Category From Categories");
 			}
 		}
 
@@ -61,7 +63,8 @@ namespace NewReleases.Data
 		{
 			using (var connection = this.GetDatabaseConnection())
 			{
-				return connection.Query<string>("Select PremierPublisher From PremierPublishers");
+				return connection.
+					Query<string>("Select PremierPublisher From PremierPublishers");
 			}
 		}
 
