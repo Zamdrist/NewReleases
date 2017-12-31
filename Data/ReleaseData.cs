@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net;
 using Dapper;
 using FastMember;
-using NewReleases.Release;
 
 namespace NewReleases.Data
 {
