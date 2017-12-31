@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[Categories](
+	[Category] [nvarchar](800) NULL
+)
+
+/*COMICS & GRAPHIC NOVELS
+MAGAZINES
+BOOKS
+MERCHANDISE/*
+

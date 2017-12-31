@@ -63,9 +63,9 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataObjects\InsertReleaseItems_DropCreate.sql" />
-    <Content Include="DataObjects\PremierPublishers_DropCreate.sql" />
-    <Content Include="DataObjects\ReleaseItems_DropCreate.sql" />
+    <Content Include="DataObjects\Categories.sql" />
+    <Content Include="DataObjects\PremierPublishers.sql" />
+    <Content Include="DataObjects\ReleaseItems.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

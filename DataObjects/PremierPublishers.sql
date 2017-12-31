@@ -1,6 +1,10 @@
 CREATE TABLE [dbo].[PremierPublishers](
 	[PremierPublisher] [nvarchar](800) NULL
-) ON [PRIMARY]
-GO
+)
+/*DARK HORSE COMICS
+DC COMICS
+IDW PUBLISHING
+IMAGE COMICS
+MARVEL COMICS*/
 
 
