@@ -52,8 +52,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Release.cs" />
-    <Compile Include="ReleaseItem.cs" />
+    <Compile Include="Data\ReleaseData.cs" />
+    <Compile Include="Data\ReleaseItem.cs" />
+    <Compile Include="Release\NewRelease.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -63,10 +64,11 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataObjects\Categories.sql" />
-    <Content Include="DataObjects\PremierPublishers.sql" />
-    <Content Include="DataObjects\ReleaseItems.sql" />
+    <Content Include="Data\Database\Categories.sql" />
+    <Content Include="Data\Database\PremierPublishers.sql" />
+    <Content Include="Data\Database\ReleaseItems.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NewReleases
+namespace NewReleases.Release
 {
     public class ReleaseItem
     {
