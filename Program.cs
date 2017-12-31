@@ -10,7 +10,6 @@ namespace NewReleases
 			var results = release.Pull(new Uri("http://www.previewsworld.com/shipping/newreleases.txt"));
 			Console.WriteLine($"{results} rows written to database.");
 			Console.ReadLine();
-
 		}
 	}
 }
