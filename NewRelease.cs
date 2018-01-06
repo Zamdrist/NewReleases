@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -77,6 +77,36 @@ namespace NewReleases
 			var regex = new Regex(@"\#\d+");
 			var match = regex.Match(title);
 			return match.Success ? match.Value : string.Empty;
+		}
+    
+		public void MailReleaseResults(string address, string credentials, string results, DateTime releaseDate)
+		{
+			var fromAddress = new MailAddress(address, "New Release Import");
+			var toAddress = new MailAddress(address);
+
+			var smtp = new SmtpClient
+			{
+				Port = 587,
+				Host = "smtp.gmail.com",
+				EnableSsl = true,
+				DeliveryMethod = SmtpDeliveryMethod.Network,
+				UseDefaultCredentials = false,
+				Credentials = new NetworkCredential(fromAddress.Address, credentials)
+
+			};
+
+			using (var message = new MailMessage(fromAddress, toAddress)
+			{
+				Subject = $"New releases for {releaseDate : M/d/yyyy}",
+
+				Body =
+					$"Results of New Release import: {results} rows imported.",
+				IsBodyHtml = true
+			})
+
+			{
+				smtp.Send(message);
+			}
 		}
 	}
 }
