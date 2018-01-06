@@ -12,8 +12,8 @@ namespace NewReleases.Data
 {
 	public class ReleaseData
 	{
-		public IEnumerable<string> PremierPublishers;
-		public IEnumerable<string> Categories;
+		public IReadOnlyCollection<string> PremierPublishers;
+		public IReadOnlyCollection<string> Categories;
 
 		public ReleaseData()
 		{
@@ -49,20 +49,20 @@ namespace NewReleases.Data
 			}
 		}
 
-		private IEnumerable<string> GetCategories()
+		private IReadOnlyCollection<string> GetCategories()
 		{
 			using (var connection = this.GetDatabaseConnection())
 			{
-				return connection.
+				return (IReadOnlyCollection<string>)connection.
 					Query<string>("Select Category From Categories");
 			}
 		}
 
-		private IEnumerable<string> GetPremierPublishers()
+		private IReadOnlyCollection<string> GetPremierPublishers()
 		{
 			using (var connection = this.GetDatabaseConnection())
 			{
-				return connection.
+				return (IReadOnlyCollection<string>)connection.
 					Query<string>("Select PremierPublisher From PremierPublishers");
 			}
 		}
