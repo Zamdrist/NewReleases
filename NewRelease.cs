@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NewReleases.Data;
 
 namespace NewReleases
@@ -40,6 +41,7 @@ namespace NewReleases
 				if (line.Split('\t').Length == 3)
 				{
 					var lineItems = line.Split('\t');
+					var issueNumber = this.FindIssueInTitle(lineItems[1]);
 					var releaseItem = new ReleaseItem
 					{
 						ReleaseDate = releaseDate,
@@ -47,6 +49,7 @@ namespace NewReleases
 						Publisher = premierePublisher,
 						ItemCode = lineItems[0].Trim(),
 						Title = lineItems[1].Trim(),
+						IssueNumber = issueNumber == string.Empty ? null : issueNumber,
 						Price = decimal.TryParse(lineItems[2].Replace("$", string.Empty), out var price)
 							? price
 							: 0,
@@ -67,6 +70,13 @@ namespace NewReleases
 				throw;
 			}
 			return releaseData.Count;
+		}
+
+		private string FindIssueInTitle(string title)
+		{
+			var regex = new Regex(@"\#\d+");
+			var match = regex.Match(title);
+			return match.Success ? match.Value : string.Empty;
 		}
 	}
 }

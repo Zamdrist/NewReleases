@@ -83,6 +83,7 @@ namespace NewReleases.Data
 					"Publisher",
 					"ItemCode",
 					"Title",
+					"IssueNumber",
 					"Price",
 					"Note"));
 				}

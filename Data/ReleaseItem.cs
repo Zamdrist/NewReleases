@@ -9,6 +9,7 @@ namespace NewReleases.Data
         public string Publisher { get; set; }
         public string ItemCode { get; set; }
         public string Title { get; set; }
+		public string IssueNumber { get; set; }
         public decimal Price { get; set; }
         public string Note { get; set; }
     }
