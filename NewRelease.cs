@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using NewReleases.Data;
 
@@ -72,13 +74,6 @@ namespace NewReleases
 			return releaseData.Count;
 		}
 
-		private string FindIssueInTitle(string title)
-		{
-			var regex = new Regex(@"\#\d+");
-			var match = regex.Match(title);
-			return match.Success ? match.Value : string.Empty;
-		}
-    
 		public void MailReleaseResults(string address, string credentials, string results, DateTime releaseDate)
 		{
 			var fromAddress = new MailAddress(address, "New Release Import");
@@ -107,6 +102,12 @@ namespace NewReleases
 			{
 				smtp.Send(message);
 			}
+		}
+		private string FindIssueInTitle(string title)
+		{
+			var regex = new Regex(@"\#\d+");
+			var match = regex.Match(title);
+			return match.Success ? match.Value : string.Empty;
 		}
 	}
 }
