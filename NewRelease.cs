@@ -103,11 +103,15 @@ namespace NewReleases
 				smtp.Send(message);
 			}
 		}
+
 		private string FindIssueInTitle(string title)
 		{
 			var regex = new Regex(@"\#\d+");
 			var match = regex.Match(title);
 			return match.Success ? match.Value : string.Empty;
 		}
+
+		public bool CredentialsSent(string address, string credentials) =>
+			!string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(credentials);
 	}
 }
