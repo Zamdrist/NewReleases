@@ -43,7 +43,6 @@ namespace NewReleases
 				if (line.Split('\t').Length == 3)
 				{
 					var lineItems = line.Split('\t');
-					var issueNumber = this.FindIssueInTitle(lineItems[1]);
 					var releaseItem = new ReleaseItem
 					{
 						ReleaseDate = releaseDate,
@@ -51,7 +50,7 @@ namespace NewReleases
 						Publisher = premierePublisher,
 						ItemCode = lineItems[0].Trim(),
 						Title = lineItems[1].Trim(),
-						IssueNumber = issueNumber == string.Empty ? null : issueNumber,
+						IssueNumber = this.FindIssueInTitle(lineItems[1]),
 						Price = decimal.TryParse(lineItems[2].Replace("$", string.Empty), out var price)
 							? price
 							: 0,
@@ -108,7 +107,7 @@ namespace NewReleases
 		{
 			var regex = new Regex(@"\#\d+");
 			var match = regex.Match(title);
-			return match.Success ? match.Value : string.Empty;
+			return match.Success ? match.Value : null;
 		}
 
 		public bool CredentialsSent(string address, string credentials) =>
